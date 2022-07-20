@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    </head>
+<body>
+    <h1><b>DUMB ENCRYPTOR</b></h1>
+    <article>
+        <!-- <label for="tbuser">Encrypt:</label> -->
+        <input type = "text" id = "tbuser" placeholder = "Enter text to encrypt" maxlength="50">
+        <input type = "button" id="btn1" value = "Encrypt">
+        <br>
+        <!-- <label for="decrypt">Decrypt:</label> -->
+        <input type = "text" id = "decrypt" placeholder = "Enter text to decrypt" maxlength="50">
+        <input type = "button" id="btn2" value = "Decrypt">
+        <br>
+        <p>Output:</p>
+        <p class = "output" id="output1"></p>
+        <p class = "output2" id="output3"></p>
+    
+       <!-- <button onclick="myFunctionE()">Copy encrypted</button>
+        <button onclick="myFunctionD()">Copy decrypted</button>-->
+
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200&display=swap');
+    * {
+        padding: 5px;
+        margin: 10px;
+        font-size: 20px;
+        margin-top: 30px;
+        font-family: 'Josefin Sans', sans-serif;
+        background-color: #c5d5cb;
+        
+    }
+    h1 {
+        position: relative;
+        color: #5a7670;
+        font-size: 30px;
+        text-align:center;
+        border: 2px solid #5a7670;
+    }
+    #output1 {
+        background-color: #9fa8a3;
+        padding: 20px;
+        border: 1px solid #4b514e;
+    }
+    #btn1 {
+        background-color: #9fa8a3; 
+    }
+    #btn1:hover {
+        background-color: black;
+        color:white;
+        transition: 0.5s;
+    }
+    #btn2 {
+        background-color: #9fa8a3; 
+    }
+    #btn2:hover {
+        background-color: black;
+        color:white;
+        transition: 0.5s;
+    }
+        </style>
+    
+    <script>
+            const txt1 = document.getElementById('tbuser');
+            const btn1 = document.getElementById('btn1');
+            const out1 = document.getElementById('output1');
+
+            const txt2 = document.getElementById('decrypt');
+            const btn2 = document.getElementById('btn2');
+            const out2 = document.getElementById('output3');
+
+            var encrypt = "";
+            var decrypt = "";
+
+            function fun1() {
+                var string = txt1.value;
+                var skip = ((Math.random()*6) +1);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                encrypt = encrypt + skip3;
+                out1.innerHTML = encrypt ;
+            }
+
+            function fun2() {
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-1);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out1.innerHTML = decrypt ;
+            }
+
+            btn1.addEventListener('click',fun1);
+            btn2.addEventListener('click',fun2);
+
+            /*function myFunctionE() {
+            // Get the text field 
+            var copyText = document.getElementById("tbuser");
+
+            //Select the text field 
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            //copy the text inside the text field 
+            /*navigator.clipboard.writeText(encrypt);
+
+            // Alert the copied text
+
+            alert("Copied the text: " + encrypt);
+            }
+
+            function myFunctionD() {
+            /* Get the text field 
+            var copyText = document.getElementById("decrypt");
+
+            /* Select the text field 
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field 
+            navigator.clipboard.writeText(decrypt);
+
+            /* Alert the copied text 
+            alert("Copied the text: " + decrypt);
+            }*/
+
+
+
+            
+
+    </script>
+    </article>
+</body>
+</html>
