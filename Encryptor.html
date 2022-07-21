@@ -3,26 +3,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Encryptor</title>
     </head>
 <body>
-    <h1><b>DUMB ENCRYPTOR</b></h1>
-    <article>
-        <!-- <label for="tbuser">Encrypt:</label> -->
-        <input type = "text" id = "tbuser" placeholder = "Enter text to encrypt" maxlength="50">
-        <input type = "button" id="btn1" value = "Encrypt">
-        <br>
-        <!-- <label for="decrypt">Decrypt:</label> -->
-        <input type = "text" id = "decrypt" placeholder = "Enter text to decrypt" maxlength="50">
-        <input type = "button" id="btn2" value = "Decrypt">
-        <br>
-        <p>Output:</p>
-        <p class = "output" id="output1"></p>
-        <p class = "output2" id="output3"></p>
     
-       <!-- <button onclick="myFunctionE()">Copy encrypted</button>
-        <button onclick="myFunctionD()">Copy decrypted</button>-->
+    <h1>DUMB ENCRYPTOR</h1>
+    <article>
 
+        <input type = "text" id = "tbuser" placeholder = "Enter text to encrypt">
+        <input type = "button" id="btn1" value = "Encrypt">
+        <button id="btn1" onclick="copy()">Copy</button>
+        <br>
+        <textarea id="output1" rows=2 cols=60 wrap=on readonly></textarea>
+        <br>
+        <input type = "text" id = "decrypt" placeholder = "Enter text to decrypt">
+        <input type = "button" id="btn2" value = "Decrypt">
+        <button id="btn1" onclick="copy2()">Copy</button>
+        <br>
+        <textarea id="output3" rows=2 cols=60 wrap=on readonly></textarea>
+    
 
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200&display=swap');
@@ -32,23 +31,57 @@
         font-size: 20px;
         margin-top: 30px;
         font-family: 'Josefin Sans', sans-serif;
-        background-color: #c5d5cb;
         
+        
+        
+    }
+    body {
+        background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20220428/pngtree-data-security-abstract-light-effect-background-encryption-locked-image_1077345.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    #otext {
+        border: 1px solid #4b514e;
+        max-width: fit-content;
+     
     }
     h1 {
         position: relative;
-        color: #5a7670;
-        font-size: 30px;
+        color: white;
+        font-size: 50px;
         text-align:center;
-        border: 2px solid #5a7670;
+    }
+
+    #tbuser {
+        background-color: black;
+        color:white;
+        
+    }
+
+    #decrypt {
+        background-color:  black;
+      
+        color:white;
     }
     #output1 {
-        background-color: #9fa8a3;
-        padding: 20px;
+        background-color:  black;
+        padding: 40px;
         border: 1px solid #4b514e;
+        color:white;
+       
+    }
+    #output3 {
+        background-color:  black;
+        color:white;
+        padding: 40px;
+        border: 1px solid #4b514e;
+        
     }
     #btn1 {
-        background-color: #9fa8a3; 
+        background-color:  #1E90FF;
+        color:white 
+     
     }
     #btn1:hover {
         background-color: black;
@@ -56,13 +89,16 @@
         transition: 0.5s;
     }
     #btn2 {
-        background-color: #9fa8a3; 
+        background-color: 	#1E90FF; 
+        color:white;
+        
     }
     #btn2:hover {
         background-color: black;
         color:white;
         transition: 0.5s;
     }
+
         </style>
     
     <script>
@@ -78,6 +114,13 @@
             var decrypt = "";
 
             function fun1() {
+                
+                var extraNo = ((Math.random()*11)+15)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*26)+97);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
                 var string = txt1.value;
                 var skip = ((Math.random()*6) +1);
                 for (let i = 0; i < string.length; i++) {
@@ -85,11 +128,19 @@
                 var echar = String.fromCharCode(int + skip);
                 encrypt = encrypt + echar;
                 }
-                
+                var frontE = 7;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*17)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
                 var skip2 = skip+98;
                 var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + extra2;
                 encrypt = encrypt + skip3;
-                out1.innerHTML = encrypt ;
+                out1.value = encrypt ;
+                encrypt = "";
             }
 
             function fun2() {
@@ -97,50 +148,33 @@
                 var deskip = string2.charAt(string2.length-1);
                 var deskip2 = deskip.charCodeAt(0);
                 var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-2);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-8);
                 for (let i = 0; i < string2.length-1; i++) {
                 var dint = string2.charCodeAt(i);
                 var dechar = String.fromCharCode(dint - deskip3);
                 decrypt = decrypt + dechar;
                 }
-                out1.innerHTML = decrypt ;
+                out2.value = decrypt ;
+                decrypt = "";
             }
 
             btn1.addEventListener('click',fun1);
             btn2.addEventListener('click',fun2);
 
-            /*function myFunctionE() {
-            // Get the text field 
-            var copyText = document.getElementById("tbuser");
-
-            //Select the text field 
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-            //copy the text inside the text field 
-            /*navigator.clipboard.writeText(encrypt);
-
-            // Alert the copied text
-
-            alert("Copied the text: " + encrypt);
+            
+            function copy() {
+            let textarea = document.getElementById("output1");
+            textarea.select();
+            document.execCommand("copy");
             }
-
-            function myFunctionD() {
-            /* Get the text field 
-            var copyText = document.getElementById("decrypt");
-
-            /* Select the text field 
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-            /* Copy the text inside the text field 
-            navigator.clipboard.writeText(decrypt);
-
-            /* Alert the copied text 
-            alert("Copied the text: " + decrypt);
-            }*/
-
-
-
+            function copy2() {
+            let textarea = document.getElementById("output3");
+            textarea.select();
+            document.execCommand("copy");
+}
             
 
     </script>
