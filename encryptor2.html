@@ -1,0 +1,758 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryptor</title>
+    </head>
+<body> 
+    <h1>DUMB ENCRYPTOR</h1>
+    <article>
+        <input type = "text" id = "tbuser" placeholder = "Enter text to encrypt">
+        <input type = "button" id="btn1" value = "Encrypt">
+        <button id="btn1" onclick="copy()">Copy</button>
+        <br>
+        <textarea id="output1" rows=2 cols=60 wrap=on readonly></textarea>
+        <br>
+        <p id="key">The key is: </p>
+        <br>
+        <input type = "text" id = "decrypt" placeholder = "Enter text to decrypt">
+        <input type = "text" id="dkey" placeholder = "Enter key">
+        <br>
+        <input type = "button" id="btn2" value = "Decrypt">
+        <button id="btn1" onclick="copy2()">Copy</button>
+        <br>
+        <textarea id="output3" rows=2 cols=60 wrap=on readonly></textarea>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200&display=swap');
+    * {
+        padding: 5px;
+        margin: 10px;
+        font-size: 20px;
+        margin-top: 30px;
+        font-family: 'Josefin Sans', sans-serif;    
+    }
+    body {
+        background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20220428/pngtree-data-security-abstract-light-effect-background-encryption-locked-image_1077345.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    #otext {
+        border: 1px solid #4b514e;
+        max-width: fit-content;
+    }
+    h1 {
+        position: relative;
+        color: white;
+        font-size: 50px;
+        text-align:center;
+    }
+    #key {
+        color: white;
+        background-color: black;
+        border: 1px solid #4b514e;
+        max-width: fit-content;
+    }
+    #tbuser {
+        background-color: black;
+        color:white;
+        
+    }
+    #dkey {
+        background-color:  black;
+        color:white;
+    }
+    #decrypt {
+        background-color:  black;
+        color:white;
+    }
+    #output1 {
+        background-color:  black;
+        padding: 40px;
+        border: 1px solid #4b514e;
+        color:white;     
+    }
+    #output3 {
+        background-color:  black;
+        color:white;
+        padding: 40px;
+        border: 1px solid #4b514e;      
+    }
+    #btn1 {
+        background-color:  #1E90FF;
+        color:white 
+    }
+    #btn1:hover {
+        background-color: black;
+        color:white;
+        transition: 0.5s;
+    }
+    #btn2 {
+        background-color: 	#1E90FF; 
+        color:white;     
+    }
+    #btn2:hover {
+        background-color: black;
+        color:white;
+        transition: 0.5s;
+    }
+
+    @media only screen and (max-width:700px) {
+
+        * {
+        padding: 3px;
+        margin: 3px;
+        font-size: 10px;
+        margin-top: 20px;
+        font-family: 'Josefin Sans', sans-serif;    
+    }
+
+        body {
+        background-image: url(https://w0.peakpx.com/wallpaper/129/44/HD-wallpaper-signal-secure-tech-blue-encrypt-encrypted-future-private-thumbnail.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    #output1 {
+        max-width: 95%;
+    }
+
+    #output3 {
+        max-width: 95%;
+    }
+
+    h1 {
+        position: relative;
+        color: white;
+        font-size: 20px;
+        text-align:center;
+    }
+
+
+    }
+
+
+        </style> 
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+            const txt1 = document.getElementById('tbuser');
+            const btn1 = document.getElementById('btn1');
+            const out1 = document.getElementById('output1');
+            const txt2 = document.getElementById('decrypt');
+            const btn2 = document.getElementById('btn2');
+            const out2 = document.getElementById('output3');
+            const keyout = document.getElementById('key');
+            const keyin = document.getElementById('dkey');
+            var encrypt = "";
+            var decrypt = "";
+
+
+            function fun1() { 
+                out2.value = "";
+                var etype = Math.round(((Math.random()*10)+1));
+               // var etype =10;
+                switch(etype) {
+                    case 1: 
+                var extraNo = ((Math.random()*11)+15)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*60)+65);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
+                var string = txt1.value;
+                var skip = ((Math.random()*9) +1);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                var frontE = 7;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*17)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + extra2;
+                encrypt = encrypt + skip3;
+                out1.value = encrypt ;
+                encrypt = "";
+                var Ekey = 1062;
+                keyout.innerHTML ="The key is: " + Ekey;
+                break;
+
+
+
+                case 2:
+                var extraNo = ((Math.random()*21)+10)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*40)+84);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
+                var string = txt1.value;
+                var skip = ((Math.random()*15) +9);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                var frontE = 15;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*17)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + skip3;
+                encrypt = encrypt + extra2;
+                out1.value = encrypt ;
+                encrypt = "";
+                var Ekey = 1025;
+                keyout.innerHTML ="The key is: " + Ekey;
+                    break;
+
+
+                    case 3: 
+                var extraNo = ((Math.random()*5)+5)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*97)+30);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
+                var string = txt1.value;
+                var skip = ((Math.random()*10) +6);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                var frontE = 4;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*65)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + extra2;
+                encrypt = encrypt + skip3;
+                encrypt = encrypt + String.fromCharCode((Math.random()*20)+65);
+                out1.value = encrypt ;
+                encrypt = "";
+                var Ekey = 1789;
+                keyout.innerHTML ="The key is: " + Ekey;
+                break;
+
+
+                case 4: 
+                var extraNo = ((Math.random()*15)+35)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*60)+65);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
+                var string = txt1.value;
+                var skip = ((Math.random()*20) +1);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                var frontE = 16;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*17)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + skip3;
+                encrypt = encrypt + extra2;
+                encrypt = encrypt + String.fromCharCode((Math.random()*20)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                out1.value = encrypt ;
+                encrypt = "";
+                var Ekey = 1593;
+                keyout.innerHTML ="The key is: " + Ekey;
+                break;
+
+
+                case 5: 
+                var extraNo = ((Math.random()*3)+1)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*60)+65);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
+                var string = txt1.value;
+                var skip = ((Math.random()*4) +1);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                var frontE = 20;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*17)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + extra2;
+                encrypt = encrypt + skip3;
+                encrypt = encrypt + String.fromCharCode((Math.random()*20)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                out1.value = encrypt ;
+                encrypt = "";
+                var Ekey = 2376;
+                keyout.innerHTML ="The key is: " + Ekey;
+                break;
+
+
+                case 6:
+                var extraNo = ((Math.random()*15)+15)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*60)+65);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
+                var string = txt1.value;
+                var skip = ((Math.random()*6) +1);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                var frontE = 1;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*17)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + skip3;
+                encrypt = encrypt + extra2;
+                encrypt = encrypt + String.fromCharCode((Math.random()*20)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                out1.value = encrypt ;
+                encrypt = "";
+                var Ekey = 2098;
+                keyout.innerHTML ="The key is: " + Ekey;
+                break;
+
+                case 7: 
+                var extraNo = ((Math.random()*30)+6)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*60)+69);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
+                var string = txt1.value;
+                var skip = ((Math.random()*5) +7);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                var frontE = 9;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*17)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + extra2;
+                encrypt = encrypt + skip3;
+                encrypt = encrypt + String.fromCharCode((Math.random()*20)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                out1.value = encrypt ;
+                encrypt = "";
+                var Ekey = 2769;
+                keyout.innerHTML ="The key is: " + Ekey;
+                break;
+
+
+                case 8:
+                var extraNo = ((Math.random()*12)+11)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*40)+84);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
+                var string = txt1.value;
+                var skip = ((Math.random()*15)+1);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                var frontE = 12;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*17)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + skip3;
+                encrypt = encrypt + extra2;
+                encrypt = encrypt + String.fromCharCode((Math.random()*20)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                out1.value = encrypt ;
+                encrypt = "";
+                var Ekey = 3429;
+                keyout.innerHTML ="The key is: " + Ekey;
+                    break;
+
+
+                    case 9: 
+                var extraNo = ((Math.random()*5)+5)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*60)+65);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
+                var string = txt1.value;
+                var skip = ((Math.random()*9) +5);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                var frontE = 15;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*17)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + extra2;
+                encrypt = encrypt + skip3;
+                encrypt = encrypt + String.fromCharCode((Math.random()*20)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                out1.value = encrypt ;
+                encrypt = "";
+                var Ekey = 3647;
+                keyout.innerHTML ="The key is: " + Ekey;
+                break;
+
+                case 10:
+                var extraNo = ((Math.random()*21)+4)
+                for (let i = 0; i<extraNo; i++) {
+                    var extra = ((Math.random()*40)+84);
+                    var dummy = String.fromCharCode(extra);
+                    encrypt = encrypt + dummy;
+                }
+                var string = txt1.value;
+                var skip = ((Math.random()*14) +3);
+                for (let i = 0; i < string.length; i++) {
+                var int = string.charCodeAt(i);
+                var echar = String.fromCharCode(int + skip);
+                encrypt = encrypt + echar;
+                }
+                var frontE = 11;
+                for (let i =0; i<frontE; i++) {
+                    var frontE2 = ((Math.random()*17)+40);
+                    var frontE3 = String.fromCharCode(frontE2);
+                    encrypt = encrypt + frontE3
+                }
+                var skip2 = skip+98;
+                var skip3 = String.fromCharCode(skip2);
+                var extra2 = String.fromCharCode(extraNo);
+                encrypt = encrypt + skip3;
+                encrypt = encrypt + extra2;
+                encrypt = encrypt + String.fromCharCode((Math.random()*20)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                encrypt = encrypt + String.fromCharCode((Math.random()*60)+65);
+                out1.value = encrypt ;
+                encrypt = "";
+                var Ekey = 2981;
+                keyout.innerHTML ="The key is: " + Ekey;
+                    break;
+
+            }
+        }
+
+
+
+
+
+          //decryption begins here  
+            function fun2() {
+               var dkey = keyin.value;
+                var dkey2 =0;
+                if (dkey == 1062) {
+                    dkey2 = 1;
+                } else if (dkey == 1025) {
+                    dkey2 =2;
+                } else if (dkey == 1789) {
+                    dkey2 =3;
+                } else if (dkey == 1593) {
+                    dkey2 =4;
+                } else if (dkey == 2376) {
+                    dkey2 =5;
+                } else if (dkey == 2098) {
+                    dkey2 =6;
+                } else if (dkey == 2769) {
+                    dkey2 =7;
+                } else if (dkey == 3429) {
+                    dkey2 =8;
+                } else if (dkey == 3647) {
+                    dkey2 =9;
+                } else if (dkey == 2981) {
+                    dkey2 =10;
+                } 
+                //var dkey2 = 10;
+                switch (dkey2) {
+                    case 1:
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-1);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-2);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-8);
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out2.value = decrypt ;
+                decrypt = "";
+                break;
+
+
+                case 2:
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-2);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-1);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-16);
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out2.value = decrypt ;
+                decrypt = "";
+                    break;
+
+
+                    case 3:
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-2);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-3);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-6);
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out2.value = decrypt ;
+                decrypt = "";
+                break;
+
+                case 4:
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-4);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-3);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-19);
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out2.value = decrypt ;
+                decrypt = "";
+                break;
+
+                case 5:
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-4);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-5);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-24);
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out2.value = decrypt ;
+                decrypt = "";
+                break;
+
+                case 6:
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-6);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-5);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-6);
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out2.value = decrypt ;
+                decrypt = "";
+                break;
+
+
+                case 7:
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-6);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-7);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-15);
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out2.value = decrypt ;
+                decrypt = "";
+                break;
+
+
+                case 8:
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-7);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-6);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-18);
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out2.value = decrypt ;
+                decrypt = "";
+                    break;
+
+                    case 9:
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-8);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-9);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-23);
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out2.value = decrypt ;
+                decrypt = "";
+                break;
+
+                case 10:
+                var string2 = txt2.value;
+                var deskip = string2.charAt(string2.length-9);
+                var deskip2 = deskip.charCodeAt(0);
+                var deskip3 = deskip2-98;
+                var deextra = string2.charAt(string2.length-8);
+                var deextra2 = deextra.charCodeAt(0);
+                string2 = string2.substr(deextra2+1);
+                string2 = string2.substring(0,string2.length-19);
+                for (let i = 0; i < string2.length-1; i++) {
+                var dint = string2.charCodeAt(i);
+                var dechar = String.fromCharCode(dint - deskip3);
+                decrypt = decrypt + dechar;
+                }
+                out2.value = decrypt ;
+                decrypt = "";
+                    break;
+
+            }
+        }
+
+            btn1.addEventListener('click',fun1);
+            btn2.addEventListener('click',fun2);        
+            function copy() {
+            let textarea = document.getElementById("output1");
+            textarea.select();
+            document.execCommand("copy");
+            }
+            function copy2() {
+            let textarea = document.getElementById("output3");
+            textarea.select();
+            document.execCommand("copy");
+            }
+            
+    </script>
+    </article>
+</body>
+</html>
